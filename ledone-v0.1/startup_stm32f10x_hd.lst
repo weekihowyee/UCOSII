@@ -563,9 +563,11 @@ ARM Macro Assembler    Page 9
               00000400 
               00000200 
               00000000 
-Command Line: --debug --xref --device=DARMSTM --apcs=interwork -ostartup_stm32f
-10x_hd.o -IC:\Keil3\ARM\INC\ST\STM32F10x --list=.\startup_stm32f10x_hd.lst ASM\
-startup_stm32f10x_hd.s
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\startup_stm32f10x_hd.d -o.\startup_stm32f10x_hd.o -IE:\keil5\ARM
+\RV31\INC -IE:\keil5\ARM\CMSIS\Include -IE:\keil5\ARM\Inc\ST\STM32F10x --predef
+ine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 515" --list=.\startup_s
+tm32f10x_hd.lst ASM\startup_stm32f10x_hd.s
 
 
 
@@ -1462,4 +1464,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-410 symbols in table
+425 symbols in table

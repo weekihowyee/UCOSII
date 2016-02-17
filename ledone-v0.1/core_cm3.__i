@@ -1,1 +1,0 @@
--c --device DARMSTM -g -O0 --apcs=interwork -I.\Lib\inc -I.\System -I.\USR -I.\UCOSII\CONFIG -I.\UCOSII\CORE -I.\UCOSII\PORT -I "C:\Keil3\ARM\INC\ST\STM32F10x" -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "core_cm3.o" --omf_browse "core_cm3.crf" --depend "core_cm3.d" "System\core_cm3.c"

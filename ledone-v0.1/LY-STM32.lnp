@@ -1,4 +1,28 @@
---device DARMSTM "startup_stm32f10x_hd.o" "main.o" "pbdata.o" "stm32f10x_it.o" "stm32f10x_gpio.o" "stm32f10x_rcc.o" "misc.o" "core_cm3.o" "system_stm32f10x.o" "os_cpu_c.o" "os_dbg.o" "os_cpu_a.o" "os_core.o" "os_flag.o" "os_mbox.o" "os_mem.o" "os_mutex.o" "os_q.o" "os_sem.o" "os_task.o" "os_time.o" "os_tmr.o" --strict --scatter "LY-STM32.sct" 
---autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
---info sizes --info totals --info unused --info veneers 
- --list ".\LY-STM32.map" -o "LY-STM32.axf"
+--cpu Cortex-M3
+".\startup_stm32f10x_hd.o"
+".\main.o"
+".\pbdata.o"
+".\stm32f10x_it.o"
+".\led.o"
+".\stm32f10x_gpio.o"
+".\stm32f10x_rcc.o"
+".\misc.o"
+".\core_cm3.o"
+".\system_stm32f10x.o"
+".\os_cpu_c.o"
+".\os_dbg.o"
+".\os_cpu_a.o"
+".\os_core.o"
+".\os_flag.o"
+".\os_mbox.o"
+".\os_mem.o"
+".\os_mutex.o"
+".\os_q.o"
+".\os_sem.o"
+".\os_task.o"
+".\os_time.o"
+".\os_tmr.o"
+--strict --scatter ".\LY-STM32.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\LY-STM32.map" -o .\LY-STM32.axf

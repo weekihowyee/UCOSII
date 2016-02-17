@@ -1,1 +1,0 @@
---device DARMSTM -g --apcs=interwork -I "C:\Keil3\ARM\INC\ST\STM32F10x" --list ".\os_cpu_a.lst" --xref -o "os_cpu_a.o" "UCOSII\PORT\os_cpu_a.asm"
