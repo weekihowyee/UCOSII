@@ -1,0 +1,1 @@
+-c --device DARMSTM -g -O0 --apcs=interwork -I.\Lib\inc -I.\System -I.\USR -I.\UCOSII\CONFIG -I.\UCOSII\CORE -I.\UCOSII\PORT -I "C:\Keil3\ARM\INC\ST\STM32F10x" -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "os_time.o" --omf_browse "os_time.crf" --depend "os_time.d" "UCOSII\CORE\os_time.c"
