@@ -1,0 +1,11 @@
+.\os_flag.o: UCOSII\CORE\os_flag.c
+.\os_flag.o: UCOSII\CORE\ucos_ii.h
+.\os_flag.o: .\UCOSII\CONFIG\includes.h
+.\os_flag.o: E:\Keil\ARM\ARMCC\include\stdio.h
+.\os_flag.o: E:\Keil\ARM\ARMCC\include\string.h
+.\os_flag.o: E:\Keil\ARM\ARMCC\include\ctype.h
+.\os_flag.o: E:\Keil\ARM\ARMCC\include\stdlib.h
+.\os_flag.o: E:\Keil\ARM\ARMCC\include\stdarg.h
+.\os_flag.o: .\UCOSII\CORE\ucos_ii.h
+.\os_flag.o: .\UCOSII\PORT\os_cpu.h
+.\os_flag.o: .\UCOSII\CONFIG\os_cfg.h

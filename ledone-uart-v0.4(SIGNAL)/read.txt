@@ -1,0 +1,5 @@
+模板使用说明：
+	1.任务创建三元素：pbdata.h
+	2.BSP以单独文件创建
+	3.详细任务代码在usr_app.c
+	4.bootloader在main.c中。
