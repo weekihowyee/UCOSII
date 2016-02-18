@@ -27,7 +27,14 @@ Project File Date:  02/18/2016
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'E:\keil5\ARM\ARMCC\Bin'
 Build target 'LY-STM32'
-".\LY-STM32.axf" - 0 Error(s), 0 Warning(s).
+compiling led.c...
+USR\usart.h(6): warning:  #1295-D: Deprecated declaration usart_config - give arg types
+  void usart_config();
+USR\led.c: 1 warning, 0 errors
+linking...
+Program Size: Code=12950 RO-data=594 RW-data=116 ZI-data=4228  
+FromELF: creating hex file...
+".\LY-STM32.axf" - 0 Error(s), 1 Warning(s).
 </pre>
 </body>
 </html>

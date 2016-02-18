@@ -1,0 +1,11 @@
+.\os_sem.o: UCOSII\CORE\os_sem.c
+.\os_sem.o: UCOSII\CORE\ucos_ii.h
+.\os_sem.o: .\UCOSII\CONFIG\includes.h
+.\os_sem.o: E:\Keil\ARM\ARMCC\include\stdio.h
+.\os_sem.o: E:\Keil\ARM\ARMCC\include\string.h
+.\os_sem.o: E:\Keil\ARM\ARMCC\include\ctype.h
+.\os_sem.o: E:\Keil\ARM\ARMCC\include\stdlib.h
+.\os_sem.o: E:\Keil\ARM\ARMCC\include\stdarg.h
+.\os_sem.o: .\UCOSII\CORE\ucos_ii.h
+.\os_sem.o: .\UCOSII\PORT\os_cpu.h
+.\os_sem.o: .\UCOSII\CONFIG\os_cfg.h
