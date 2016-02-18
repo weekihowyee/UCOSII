@@ -30,18 +30,12 @@ void NMI_Handler(void)
 
 void USART1_IRQHandler(void)
 {
-   OS_CPU_SR  cpu_sr;
-    OS_ENTER_CRITICAL();                        
-    OSIntNesting++;
-    OS_EXIT_CRITICAL();
-	
 		if(USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)
    {
 		USART_SendData(USART1,USART_ReceiveData(USART1));
 		while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);
    }
-	
-	OSIntExit();  
+
 }
 
 

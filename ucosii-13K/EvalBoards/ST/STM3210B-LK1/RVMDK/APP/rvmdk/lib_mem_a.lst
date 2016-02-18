@@ -451,8 +451,15 @@ ARM Macro Assembler    Page 7
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\output\lib_mem_a.d -o.\output\lib_mem_a.o -IE:\keil5\ARM\RV31\IN
 C -IE:\keil5\ARM\CMSIS\Include -IE:\keil5\ARM\Inc\ST\STM32F10x --predefine="__E
-VAL SETA 1" --predefine="__UVISION_VERSION SETA 515" --list=.\rvmdk\lib_mem_a.l
-st ..\..\..\..\..\uC-LIB\Ports\ARM-Cortex-M3\RealView\lib_mem_a.asm
+VAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA
+ 515" --list=.\rvmdk\lib_mem_a.lst ..\..\..\..\..\uC-LIB\Ports\ARM-Cortex-M3\Re
+
+
+
+ARM Macro Assembler    Page 8 
+
+
+alView\lib_mem_a.asm
 
 
 
@@ -678,4 +685,4 @@ b_mem_a.asm
 b_mem_a.asm
 
 18 symbols
-350 symbols in table
+351 symbols in table

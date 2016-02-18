@@ -14115,6 +14115,14 @@ N//static  OS_EVENT *Disp_Box;
 N
 Nstatic App_TaskStart(void *p_arg);
 N
+Nstatic App_TaskLED(void *p_arg);
+N
+N/*int fputc(int ch,FILE *f)
+N{
+N	USART_SendData(USART1,(u8)ch);
+N	while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);
+N	return ch;
+N}*/
 N
 Nint  main (void)
 N{
@@ -14139,7 +14147,7 @@ N
 N		OSTimeSet(0);
 N	  OSStart();           
 N	 return (0);
-W "main.c" 18 17 variable "os_err" was set but never used
+W "main.c" 26 17 variable "os_err" was set but never used
 N	}
 N
 Nstatic App_TaskStart(void *p_arg)
@@ -14152,24 +14160,49 @@ N#if (OS_TASK_STAT_EN > 0)
 X#if (1 > 0)
 N    OSStatInit();                                               /* Determine CPU capacity.                              */
 N#endif
-N/*
+N
 N
 N	os_err = OSTaskCreate((void (*)(void *)) App_TaskLED,
 N                          (void          * ) 0,
 N                          (OS_STK        * )&App_TaskLEDStk[APP_TASK_LED_STK_SIZE - 1],
+X                          (OS_STK        * )&App_TaskLEDStk[128 - 1],
 N                          (INT8U           ) APP_TASK_LED_PRIO
+X                          (INT8U           ) 6
 N                         );
-N                         */
-Nwhile(1)
+N     OSTaskSuspend(APP_TASK_START_PRIO); 
+X     OSTaskSuspend(2); 
+N/*while(1)
 N		{
 N	   OSTimeDlyHMSM(0, 0, 0, 800);	
 N	   BSP_LED_On(1);
 N	   OSTimeDlyHMSM(0, 0, 0, 800);
 N	   BSP_LED_Off(1);	 
-N    }
-W "main.c" 41 15 variable "os_err" was declared but never referenced
+N    }*/
+N		
+W "main.c" 49 15 variable "os_err" was set but never used
 N}
 N
+Nstatic App_TaskLED(void *p_arg)
+N{
+N	CPU_INT08U  os_err;
+N
+N	OS_CPU_SysTickInit();                                       /* Initialize the SysTick. 		*/
+N
+N#if (OS_TASK_STAT_EN > 0)
+X#if (1 > 0)
+N    OSStatInit();                                               /* Determine CPU capacity.                              */
+N#endif
+N		 BSP_LED_Off(2);
+N		while(1)
+N		{
+N	   OSTimeDlyHMSM(0, 0, 0, 800);	
+N	   BSP_LED_On(1);
+N			printf("helloos\n");
+N	   OSTimeDlyHMSM(0, 0, 0, 800);
+N	   BSP_LED_Off(1);	 
+N    }
+W "main.c" 76 14 variable "os_err" was declared but never referenced
+N}
 N
 N#if (OS_APP_HOOKS_EN > 0)
 X#if (1 > 0)
@@ -14303,4 +14336,3 @@ N
 N
 N
 N
-W "main.c" 7 18 variable "App_TaskLEDStk" was declared but never referenced

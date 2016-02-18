@@ -36,7 +36,7 @@
 ".\output\lib_mem.o"
 ".\output\lib_str.o"
 ".\output\lib_mem_a.o"
---strict --scatter "..\BSP\STM32_Flash.scat"
+--library_type=microlib --strict --scatter "..\BSP\STM32_Flash.scat"
 --entry ResetHndlr --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\rvmdk\STM3210B-EVAL-OS-Probe.map" -o .\output\STM3210B-EVAL-OS-Probe.axf

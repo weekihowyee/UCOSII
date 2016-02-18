@@ -48,12 +48,12 @@
 #define  GPIO_UART2TxPin                              GPIO_Pin_2
 
 
-#define  BSP_GPIOC_LED1                           DEF_BIT_08
-#define  BSP_GPIOC_LED2                           DEF_BIT_09
+#define  BSP_LED1                           GPIO_Pin_5
+#define  BSP_LED2                           GPIO_Pin_6
 
 
-#define  BSP_GPIOA_PB_KEY1                        DEF_BIT_00
-#define  BSP_GPIOB_PB_KEY2                        DEF_BIT_09
+#define  BSP_KEY1                        GPIO_Pin_5
+#define  BSP_KEY2                        GPIO_Pin_1
 
 /*
 *********************************************************************************************************
@@ -455,18 +455,16 @@ static  void  BSP_PB_Init (void)
 {
     GPIO_InitTypeDef  gpio_init;
 
-
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
     GPIO_StructInit(&gpio_init);
-    gpio_init.GPIO_Pin  = BSP_GPIOA_PB_KEY1;
+    gpio_init.GPIO_Pin  = BSP_KEY1;
     gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-    GPIO_Init(GPIOD, &gpio_init);
+    GPIO_Init(GPIOC, &gpio_init);
 
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
     GPIO_StructInit(&gpio_init);
-    gpio_init.GPIO_Pin  = BSP_GPIOB_PB_KEY2;
+    gpio_init.GPIO_Pin  = BSP_KEY2;
     gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-    GPIO_Init(GPIOD, &gpio_init);
+    GPIO_Init(GPIOC, &gpio_init);
 
 }
 
@@ -498,14 +496,14 @@ CPU_BOOLEAN  BSP_PB_GetStatus (CPU_INT08U pb)
 
     switch (pb) {
         case BSP_PB_ID_KEY1:
-             pin = GPIO_ReadInputDataBit(GPIOA, BSP_GPIOA_PB_KEY1);
+             pin = GPIO_ReadInputDataBit(GPIOC, BSP_KEY1);
              if (pin == 0) {
                  status = 1;
              }
              break;
 
         case BSP_PB_ID_KEY2:
-             pin = GPIO_ReadInputDataBit(GPIOB, BSP_GPIOB_PB_KEY2);
+             pin = GPIO_ReadInputDataBit(GPIOC, BSP_KEY2);
              if (pin == 0) {
                  status = 2;
              }
@@ -547,20 +545,25 @@ CPU_BOOLEAN  BSP_PB_GetStatus (CPU_INT08U pb)
 
 static  void  BSP_LED_Init (void)
 {
-    GPIO_InitTypeDef  gpio_init;
-
-
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-
-    gpio_init.GPIO_Pin   = BSP_GPIOC_LED1 | BSP_GPIOC_LED2 ;
-    gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-    gpio_init.GPIO_Mode  = GPIO_Mode_Out_PP;
-    GPIO_Init(GPIOB, &gpio_init);
+		GPIO_InitTypeDef GPIO_InitStructure;	
+	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD, ENABLE);
+	
+	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_5;
+	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
+	GPIO_Init(GPIOB,&GPIO_InitStructure);
+	
+	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_6;
+	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
+	GPIO_Init(GPIOD,&GPIO_InitStructure);
 }
 
 /*
 *********************************************************************************************************
-*                                             BSP_LED_On()
+*                                             BSP_LED_Off()
 *
 * Description : Turn ON any or all the LEDs on the board.
 *
@@ -580,19 +583,16 @@ static  void  BSP_LED_Init (void)
 *********************************************************************************************************
 */
 
-void  BSP_LED_On (CPU_INT08U led)
+void  BSP_LED_Off (CPU_INT08U led)
 {
     switch (led) {
-        case 0:
-             GPIO_SetBits(GPIOB, BSP_GPIOC_LED1 | BSP_GPIOC_LED2 );
-             break;
 
         case 1:
-             GPIO_SetBits(GPIOB, BSP_GPIOC_LED1);
+             GPIO_SetBits(GPIOB, BSP_LED1);
              break;
 
         case 2:
-             GPIO_SetBits(GPIOB, BSP_GPIOC_LED2);
+             GPIO_SetBits(GPIOD, BSP_LED2);
              break;
 
         default:
@@ -602,7 +602,7 @@ void  BSP_LED_On (CPU_INT08U led)
 
 /*
 *********************************************************************************************************
-*                                              BSP_LED_Off()
+*                                              BSP_LED_On()
 *
 * Description : Turn OFF any or all the LEDs on the board.
 *
@@ -622,19 +622,16 @@ void  BSP_LED_On (CPU_INT08U led)
 *********************************************************************************************************
 */
 
-void  BSP_LED_Off (CPU_INT08U led)
+void  BSP_LED_On (CPU_INT08U led)
 {
     switch (led) {
-        case 0:
-             GPIO_ResetBits(GPIOB, BSP_GPIOC_LED1 | BSP_GPIOC_LED2 );
-             break;
 
         case 1:
-             GPIO_ResetBits(GPIOB, BSP_GPIOC_LED1);
+             GPIO_ResetBits(GPIOB, BSP_LED1);
              break;
 
         case 2:
-             GPIO_ResetBits(GPIOB, BSP_GPIOC_LED2);
+             GPIO_ResetBits(GPIOD, BSP_LED2);
              break;
         default:
              break;
@@ -662,37 +659,3 @@ void  BSP_LED_Off (CPU_INT08U led)
 * Note(s)     : none.
 *********************************************************************************************************
 */
-
-void  BSP_LED_Toggle (CPU_INT08U led)
-{
-    CPU_INT32U  pins;
-
-
-    pins = GPIO_ReadOutputData(GPIOB);
-
-    switch (led) {
-        case 0:
-             BSP_LED_Toggle(1);
-             BSP_LED_Toggle(2);       
-             break;
-
-        case 1:
-             if ((pins & BSP_GPIOC_LED1) == 0) {
-                 GPIO_SetBits(  GPIOB, BSP_GPIOC_LED1);
-             } else {
-                 GPIO_ResetBits(GPIOB, BSP_GPIOC_LED1);
-             }
-            break;
-
-        case 2:
-             if ((pins & BSP_GPIOC_LED2) == 0) {
-                 GPIO_SetBits(  GPIOB, BSP_GPIOC_LED2);
-             } else {
-                 GPIO_ResetBits(GPIOB, BSP_GPIOC_LED2);
-             }
-            break;
-        default:
-             break;
-    }
-}
-

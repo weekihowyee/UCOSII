@@ -17,7 +17,7 @@ void led1_task(void *pdata)
 	while(1)
 	{
 		GPIO_SetBits(GPIOB,GPIO_Pin_5);
-		//printf("helloos!\n");
+		printf("helloos!\n");
 		delay_ms(1000);//1s
 		GPIO_ResetBits(GPIOB,GPIO_Pin_5);
 		delay_ms(1000);//1s

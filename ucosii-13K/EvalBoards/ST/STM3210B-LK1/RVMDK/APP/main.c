@@ -12,6 +12,14 @@ static  OS_STK   App_TaskLEDStk[APP_TASK_LED_STK_SIZE];
 
 static App_TaskStart(void *p_arg);
 
+static App_TaskLED(void *p_arg);
+
+/*int fputc(int ch,FILE *f)
+{
+	USART_SendData(USART1,(u8)ch);
+	while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);
+	return ch;
+}*/
 
 int  main (void)
 {
@@ -45,23 +53,43 @@ static App_TaskStart(void *p_arg)
 #if (OS_TASK_STAT_EN > 0)
     OSStatInit();                                               /* Determine CPU capacity.                              */
 #endif
-/*
+
 
 	os_err = OSTaskCreate((void (*)(void *)) App_TaskLED,
                           (void          * ) 0,
                           (OS_STK        * )&App_TaskLEDStk[APP_TASK_LED_STK_SIZE - 1],
                           (INT8U           ) APP_TASK_LED_PRIO
                          );
-                         */
-while(1)
+     OSTaskSuspend(APP_TASK_START_PRIO); 
+/*while(1)
 		{
 	   OSTimeDlyHMSM(0, 0, 0, 800);	
 	   BSP_LED_On(1);
 	   OSTimeDlyHMSM(0, 0, 0, 800);
 	   BSP_LED_Off(1);	 
-    }
+    }*/
+		
 }
 
+static App_TaskLED(void *p_arg)
+{
+	CPU_INT08U  os_err;
+
+	OS_CPU_SysTickInit();                                       /* Initialize the SysTick. 		*/
+
+#if (OS_TASK_STAT_EN > 0)
+    OSStatInit();                                               /* Determine CPU capacity.                              */
+#endif
+		 BSP_LED_Off(2);
+		while(1)
+		{
+	   OSTimeDlyHMSM(0, 0, 0, 800);	
+	   BSP_LED_On(1);
+			printf("helloos\n");
+	   OSTimeDlyHMSM(0, 0, 0, 800);
+	   BSP_LED_Off(1);	 
+    }
+}
 
 #if (OS_APP_HOOKS_EN > 0)
 /*

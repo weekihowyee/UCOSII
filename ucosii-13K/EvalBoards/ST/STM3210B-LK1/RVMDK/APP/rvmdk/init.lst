@@ -86,8 +86,8 @@ ARM Macro Assembler    Page 2
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\output\init.d -o.\output\init.o -IE:\keil5\ARM\RV31\INC -IE:\kei
 l5\ARM\CMSIS\Include -IE:\keil5\ARM\Inc\ST\STM32F10x --predefine="__EVAL SETA 1
-" --predefine="__UVISION_VERSION SETA 515" --list=.\rvmdk\init.lst ..\BSP\init.
-s
+" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 515" --li
+st=.\rvmdk\init.lst ..\BSP\init.s
 
 
 
@@ -126,4 +126,4 @@ Symbol: __main
       At line 47 in file ..\BSP\init.s
 Comment: __main used once
 1 symbol
-337 symbols in table
+338 symbols in table

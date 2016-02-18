@@ -29,19 +29,19 @@ int main(void)
 	RCC_Configuration();
 	LED_GPIO();
 	usart_config();
-	while(1)
+	/*while(1)
 	{
 		printf("pr is ok!\n");
 		delay_ms(800);
-	}
-	/*OSInit();//初始化UCOS操作系统
+	}*/
+	OSInit();//初始化UCOS操作系统
 
 	OSTaskCreate(start_task,//指向任务代码的指针
 				(void *)0,//任务开始执行时，传递给任务参数的指针
 				(OS_STK *)&START_TASK_STK[START_STK_SIZE-1],//分配给任务堆栈的栈顶指针
 				START_TASK_PRIO);//分配给任务的优先级
 
-	OSStart();//启动ucos操作系统*/
+	OSStart();//启动ucos操作系统
 }
 
 void RCC_Configuration(void)

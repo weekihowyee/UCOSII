@@ -83,7 +83,7 @@ static  CPU_FNCT_VOID  BSP_IntVectTbl[BSP_INT_SRC_NBR];
 
 static  void  BSP_IntHandler     (CPU_DATA  int_id);
 static  void  BSP_IntHandlerDummy(void);
-static  void  UART2_ISR(void);
+static  void  UART1_ISR(void);
 
 
 /*
@@ -285,7 +285,7 @@ void  BSP_IntInit (void)
     for (int_id = 0; int_id < BSP_INT_SRC_NBR; int_id++) {
         BSP_IntVectSet(int_id, BSP_IntHandlerDummy);
     }
-    BSP_IntVectSet(BSP_INT_ID_USART2,UART2_ISR);
+    BSP_IntVectSet(BSP_INT_ID_USART1,UART1_ISR);
 }
 
 
@@ -418,12 +418,13 @@ static  void  BSP_IntHandlerDummy (void)
 //BSP_IntHandler(USART2);
 }
 
-static  void  UART2_ISR(void)
+static  void  UART1_ISR(void)
 {
-  u16 i = 0;
-  USART_ClearITPendingBit(USART2,USART_IT_RXNE); 
-  i = USART_ReceiveData(USART2);	
-  USART_SendData(USART2,i);
+  if(USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)
+   {
+		USART_SendData(USART1,USART_ReceiveData(USART1));
+		while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);
+   }
 }
 
 

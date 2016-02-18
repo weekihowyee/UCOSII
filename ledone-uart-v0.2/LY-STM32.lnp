@@ -24,7 +24,7 @@
 ".\os_task.o"
 ".\os_time.o"
 ".\os_tmr.o"
---strict --scatter ".\LY-STM32.sct"
+--library_type=microlib --strict --scatter ".\LY-STM32.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\LY-STM32.map" -o .\LY-STM32.axf

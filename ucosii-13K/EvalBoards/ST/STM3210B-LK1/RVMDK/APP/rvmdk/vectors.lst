@@ -418,8 +418,8 @@ ARM Macro Assembler    Page 7
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\output\vectors.d -o.\output\vectors.o -IE:\keil5\ARM\RV31\INC -I
 E:\keil5\ARM\CMSIS\Include -IE:\keil5\ARM\Inc\ST\STM32F10x --predefine="__EVAL 
-SETA 1" --predefine="__UVISION_VERSION SETA 515" --list=.\rvmdk\vectors.lst vec
-tors.s
+SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 515
+" --list=.\rvmdk\vectors.lst vectors.s
 
 
 
@@ -924,4 +924,4 @@ Symbol: |Image$$ARM_LIB_STACK$$ZI$$Limit|
       At line 88 in file vectors.s
 Comment: |Image$$ARM_LIB_STACK$$ZI$$Limit| used once
 47 symbols
-387 symbols in table
+388 symbols in table

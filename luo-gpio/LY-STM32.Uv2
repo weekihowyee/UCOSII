@@ -101,7 +101,7 @@ Options 1,0,0  // Target 'LY-STM32'
  ADSLDIF ()
  ADSLDDW ()
   OPTDL (SARMCM3.DLL)()(DARMSTM.DLL)(-pSTM32F103VE)(SARMCM3.DLL)()(TARMSTM.DLL)(-pSTM32F103VE)
-  OPTDBG 48126,7,()()()()()()()()()() (Segger\JL2CM3.dll)()()()
+  OPTDBG 48126,6,()()()()()()()()()() (Segger\JL2CM3.dll)()()()
  FLASH1 { 9,0,0,0,1,0,0,0,6,16,0,0,0,0,0,0,0,0,0,0 }
  FLASH2 (Segger\JL2CM3.dll)
  FLASH3 ("" ())

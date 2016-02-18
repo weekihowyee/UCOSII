@@ -13421,12 +13421,12 @@ N#define  GPIO_UART2RxPin                              GPIO_Pin_3
 N#define  GPIO_UART2TxPin                              GPIO_Pin_2
 N
 N
-N#define  BSP_GPIOC_LED1                           DEF_BIT_08
-N#define  BSP_GPIOC_LED2                           DEF_BIT_09
+N#define  BSP_LED1                           GPIO_Pin_5
+N#define  BSP_LED2                           GPIO_Pin_6
 N
 N
-N#define  BSP_GPIOA_PB_KEY1                        DEF_BIT_00
-N#define  BSP_GPIOB_PB_KEY2                        DEF_BIT_09
+N#define  BSP_KEY1                        GPIO_Pin_5
+N#define  BSP_KEY2                        GPIO_Pin_1
 N
 N/*
 N*********************************************************************************************************
@@ -13882,24 +13882,21 @@ Nstatic  void  BSP_PB_Init (void)
 N{
 N    GPIO_InitTypeDef  gpio_init;
 N
-N
-N    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-X    RCC_APB2PeriphClockCmd(((u32)0x00000004), ENABLE);
+N    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+X    RCC_APB2PeriphClockCmd(((u32)0x00000010), ENABLE);
 N    GPIO_StructInit(&gpio_init);
-N    gpio_init.GPIO_Pin  = BSP_GPIOA_PB_KEY1;
-X    gpio_init.GPIO_Pin  = 0x01;
+N    gpio_init.GPIO_Pin  = BSP_KEY1;
+X    gpio_init.GPIO_Pin  = ((u16)0x0020);
 N    gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-N    GPIO_Init(GPIOD, &gpio_init);
-X    GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1400)), &gpio_init);
+N    GPIO_Init(GPIOC, &gpio_init);
+X    GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1000)), &gpio_init);
 N
-N    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-X    RCC_APB2PeriphClockCmd(((u32)0x00000008), ENABLE);
 N    GPIO_StructInit(&gpio_init);
-N    gpio_init.GPIO_Pin  = BSP_GPIOB_PB_KEY2;
-X    gpio_init.GPIO_Pin  = 0x0200;
+N    gpio_init.GPIO_Pin  = BSP_KEY2;
+X    gpio_init.GPIO_Pin  = ((u16)0x0002);
 N    gpio_init.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-N    GPIO_Init(GPIOD, &gpio_init);
-X    GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1400)), &gpio_init);
+N    GPIO_Init(GPIOC, &gpio_init);
+X    GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1000)), &gpio_init);
 N
 N}
 N
@@ -13933,8 +13930,8 @@ N
 N    switch (pb) {
 N        case BSP_PB_ID_KEY1:
 X        case 1:
-N             pin = GPIO_ReadInputDataBit(GPIOA, BSP_GPIOA_PB_KEY1);
-X             pin = GPIO_ReadInputDataBit(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0800)), 0x01);
+N             pin = GPIO_ReadInputDataBit(GPIOC, BSP_KEY1);
+X             pin = GPIO_ReadInputDataBit(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1000)), ((u16)0x0020));
 N             if (pin == 0) {
 N                 status = 1;
 N             }
@@ -13942,8 +13939,8 @@ N             break;
 N
 N        case BSP_PB_ID_KEY2:
 X        case 2:
-N             pin = GPIO_ReadInputDataBit(GPIOB, BSP_GPIOB_PB_KEY2);
-X             pin = GPIO_ReadInputDataBit(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0200);
+N             pin = GPIO_ReadInputDataBit(GPIOC, BSP_KEY2);
+X             pin = GPIO_ReadInputDataBit(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1000)), ((u16)0x0002));
 N             if (pin == 0) {
 N                 status = 2;
 N             }
@@ -13985,23 +13982,31 @@ N*/
 N
 Nstatic  void  BSP_LED_Init (void)
 N{
-N    GPIO_InitTypeDef  gpio_init;
-N
-N
-N    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-X    RCC_APB2PeriphClockCmd(((u32)0x00000008), ENABLE);
-N
-N    gpio_init.GPIO_Pin   = BSP_GPIOC_LED1 | BSP_GPIOC_LED2 ;
-X    gpio_init.GPIO_Pin   = 0x0100 | 0x0200 ;
-N    gpio_init.GPIO_Speed = GPIO_Speed_50MHz;
-N    gpio_init.GPIO_Mode  = GPIO_Mode_Out_PP;
-N    GPIO_Init(GPIOB, &gpio_init);
-X    GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), &gpio_init);
+N		GPIO_InitTypeDef GPIO_InitStructure;	
+N	
+N	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+X	RCC_APB2PeriphClockCmd(((u32)0x00000008), ENABLE);
+N	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD, ENABLE);
+X	RCC_APB2PeriphClockCmd(((u32)0x00000020), ENABLE);
+N	
+N	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_5;
+X	GPIO_InitStructure.GPIO_Pin=((u16)0x0020);
+N	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+N	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
+N	GPIO_Init(GPIOB,&GPIO_InitStructure);
+X	GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)),&GPIO_InitStructure);
+N	
+N	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_6;
+X	GPIO_InitStructure.GPIO_Pin=((u16)0x0040);
+N	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+N	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
+N	GPIO_Init(GPIOD,&GPIO_InitStructure);
+X	GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1400)),&GPIO_InitStructure);
 N}
 N
 N/*
 N*********************************************************************************************************
-N*                                             BSP_LED_On()
+N*                                             BSP_LED_Off()
 N*
 N* Description : Turn ON any or all the LEDs on the board.
 N*
@@ -14021,22 +14026,18 @@ N* Note(s)     : none.
 N*********************************************************************************************************
 N*/
 N
-Nvoid  BSP_LED_On (CPU_INT08U led)
+Nvoid  BSP_LED_Off (CPU_INT08U led)
 N{
 N    switch (led) {
-N        case 0:
-N             GPIO_SetBits(GPIOB, BSP_GPIOC_LED1 | BSP_GPIOC_LED2 );
-X             GPIO_SetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0100 | 0x0200 );
-N             break;
 N
 N        case 1:
-N             GPIO_SetBits(GPIOB, BSP_GPIOC_LED1);
-X             GPIO_SetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0100);
+N             GPIO_SetBits(GPIOB, BSP_LED1);
+X             GPIO_SetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), ((u16)0x0020));
 N             break;
 N
 N        case 2:
-N             GPIO_SetBits(GPIOB, BSP_GPIOC_LED2);
-X             GPIO_SetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0200);
+N             GPIO_SetBits(GPIOD, BSP_LED2);
+X             GPIO_SetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1400)), ((u16)0x0040));
 N             break;
 N
 N        default:
@@ -14046,7 +14047,7 @@ N}
 N
 N/*
 N*********************************************************************************************************
-N*                                              BSP_LED_Off()
+N*                                              BSP_LED_On()
 N*
 N* Description : Turn OFF any or all the LEDs on the board.
 N*
@@ -14066,22 +14067,18 @@ N* Note(s)     : none.
 N*********************************************************************************************************
 N*/
 N
-Nvoid  BSP_LED_Off (CPU_INT08U led)
+Nvoid  BSP_LED_On (CPU_INT08U led)
 N{
 N    switch (led) {
-N        case 0:
-N             GPIO_ResetBits(GPIOB, BSP_GPIOC_LED1 | BSP_GPIOC_LED2 );
-X             GPIO_ResetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0100 | 0x0200 );
-N             break;
 N
 N        case 1:
-N             GPIO_ResetBits(GPIOB, BSP_GPIOC_LED1);
-X             GPIO_ResetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0100);
+N             GPIO_ResetBits(GPIOB, BSP_LED1);
+X             GPIO_ResetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), ((u16)0x0020));
 N             break;
 N
 N        case 2:
-N             GPIO_ResetBits(GPIOB, BSP_GPIOC_LED2);
-X             GPIO_ResetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0200);
+N             GPIO_ResetBits(GPIOD, BSP_LED2);
+X             GPIO_ResetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x1400)), ((u16)0x0040));
 N             break;
 N        default:
 N             break;
@@ -14109,44 +14106,3 @@ N*
 N* Note(s)     : none.
 N*********************************************************************************************************
 N*/
-N
-Nvoid  BSP_LED_Toggle (CPU_INT08U led)
-N{
-N    CPU_INT32U  pins;
-N
-N
-N    pins = GPIO_ReadOutputData(GPIOB);
-X    pins = GPIO_ReadOutputData(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)));
-N
-N    switch (led) {
-N        case 0:
-N             BSP_LED_Toggle(1);
-N             BSP_LED_Toggle(2);       
-N             break;
-N
-N        case 1:
-N             if ((pins & BSP_GPIOC_LED1) == 0) {
-X             if ((pins & 0x0100) == 0) {
-N                 GPIO_SetBits(  GPIOB, BSP_GPIOC_LED1);
-X                 GPIO_SetBits(  ((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0100);
-N             } else {
-N                 GPIO_ResetBits(GPIOB, BSP_GPIOC_LED1);
-X                 GPIO_ResetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0100);
-N             }
-N            break;
-N
-N        case 2:
-N             if ((pins & BSP_GPIOC_LED2) == 0) {
-X             if ((pins & 0x0200) == 0) {
-N                 GPIO_SetBits(  GPIOB, BSP_GPIOC_LED2);
-X                 GPIO_SetBits(  ((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0200);
-N             } else {
-N                 GPIO_ResetBits(GPIOB, BSP_GPIOC_LED2);
-X                 GPIO_ResetBits(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0C00)), 0x0200);
-N             }
-N            break;
-N        default:
-N             break;
-N    }
-N}
-N

@@ -13457,7 +13457,7 @@ N*/
 N
 Nstatic  void  BSP_IntHandler     (CPU_DATA  int_id);
 Nstatic  void  BSP_IntHandlerDummy(void);
-Nstatic  void  UART2_ISR(void);
+Nstatic  void  UART1_ISR(void);
 N
 N
 N/*
@@ -13670,8 +13670,8 @@ N    for (int_id = 0; int_id < BSP_INT_SRC_NBR; int_id++) {
 X    for (int_id = 0; int_id < 42; int_id++) {
 N        BSP_IntVectSet(int_id, BSP_IntHandlerDummy);
 N    }
-N    BSP_IntVectSet(BSP_INT_ID_USART2,UART2_ISR);
-X    BSP_IntVectSet(38,UART2_ISR);
+N    BSP_IntVectSet(BSP_INT_ID_USART1,UART1_ISR);
+X    BSP_IntVectSet(37,UART1_ISR);
 N}
 N
 N
@@ -13851,15 +13851,16 @@ N{
 N//BSP_IntHandler(USART2);
 N}
 N
-Nstatic  void  UART2_ISR(void)
+Nstatic  void  UART1_ISR(void)
 N{
-N  u16 i = 0;
-N  USART_ClearITPendingBit(USART2,USART_IT_RXNE); 
-X  USART_ClearITPendingBit(((USART_TypeDef *) (((u32)0x40000000) + 0x4400)),((u16)0x0525)); 
-N  i = USART_ReceiveData(USART2);	
-X  i = USART_ReceiveData(((USART_TypeDef *) (((u32)0x40000000) + 0x4400)));	
-N  USART_SendData(USART2,i);
-X  USART_SendData(((USART_TypeDef *) (((u32)0x40000000) + 0x4400)),i);
+N  if(USART_GetITStatus(USART1,USART_IT_RXNE)!=RESET)
+X  if(USART_GetITStatus(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)),((u16)0x0525))!=RESET)
+N   {
+N		USART_SendData(USART1,USART_ReceiveData(USART1));
+X		USART_SendData(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)),USART_ReceiveData(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800))));
+N		while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);
+X		while(USART_GetFlagStatus(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)),((u16)0x0080))==RESET);
+N   }
 N}
 N
 N
