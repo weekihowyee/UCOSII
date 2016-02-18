@@ -1,0 +1,1 @@
+-c --device DARMSTM -g -O1 -Otime --apcs=interwork -I. -I..\BSP -I..\..\..\..\..\uCOS-II\Ports\arm-cortex-m3\Generic\RealView -I..\..\..\..\..\uCOS-II\Source -I..\..\..\..\..\CPU\ST\STM32\inc -I..\..\..\..\..\uC-CPU -I..\..\..\..\..\uC-CPU\Arm-Cortex-M3\RealView -I..\..\..\..\..\uC-LIB -I "d:\Keil\ARM\INC\ST\STM32F10x" -o ".\output\lcd.o" --depend ".\output\lcd.d" "..\BSP\LCD.c"

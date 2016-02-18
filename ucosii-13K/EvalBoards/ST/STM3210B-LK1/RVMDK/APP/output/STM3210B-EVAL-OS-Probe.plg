@@ -1,0 +1,150 @@
+<html>
+<body>
+<pre>
+<h1>礦ision3 Build Log</h1>
+<h2>Project:</h2>
+C:\Documents and Settings\Administrator\桌面\新建文件夹 (2)\Software\EvalBoards\ST\STM3210B-LK1\RVMDK\APP\STM3210B-LK1-OS.uv2
+Project File Date:  11/23/2008
+
+<h2>Output:</h2>
+Build target 'Flash'
+linking...
+Program Size: Code=18046 RO-data=326 RW-data=76 ZI-data=7120  
+".\output\STM3210B-EVAL-OS-Probe.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Flash'
+compiling main.c...
+main.c(27): warning:  #223-D: function "App_DispScr_SignOn" declared implicitly
+main.c(17): warning:  #177-D: variable "os_err" was declared but never referenced
+main.c(5): warning:  #177-D: variable "App_TaskStartStk" was declared but never referenced
+main.c(6): warning:  #177-D: variable "App_TaskUartStk" was declared but never referenced
+main.c(7): warning:  #177-D: variable "App_TaskLEDStk" was declared but never referenced
+main.c(8): warning:  #177-D: variable "App_TaskKbdStk" was declared but never referenced
+main.c(10): warning:  #177-D: variable "InfoSem" was declared but never referenced
+main.c(11): warning:  #177-D: variable "Disp_Box" was declared but never referenced
+compiling bsp.c...
+compiling bsp_int.c...
+compiling bsp_periph.c...
+compiling os_core.c...
+compiling os_flag.c...
+compiling os_mbox.c...
+compiling os_mem.c...
+compiling os_mutex.c...
+compiling os_q.c...
+compiling os_sem.c...
+compiling os_task.c...
+compiling os_time.c...
+compiling os_tmr.c...
+compiling os_cpu_c.c...
+compiling os_dbg.c...
+compiling lib_mem.c...
+compiling lib_str.c...
+..\..\..\..\..\uC-LIB\lib_str.c(1027): warning: C3017W: pstr_srch_ix may be used before being set
+..\..\..\..\..\uC-LIB\lib_str.c(1026): warning: C3017W: srch_cmp1 may be used before being set
+linking...
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_DispScr_SignOn (referred from main.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TCBInitHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskCreateHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskDelHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskIdleHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskStatHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskSwHook (referred from os_cpu_c.o).
+Target not created
+Build target 'Flash'
+linking...
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_DispScr_SignOn (referred from main.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TCBInitHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskCreateHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskDelHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskIdleHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskStatHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskSwHook (referred from os_cpu_c.o).
+Target not created
+Build target 'Flash'
+compiling main.c...
+main.c(27): error:  #20: identifier "App_TaskStart" is undefined
+main.c(17): warning:  #550-D: variable "os_err" was set but never used
+main.c(6): warning:  #177-D: variable "App_TaskUartStk" was declared but never referenced
+main.c(7): warning:  #177-D: variable "App_TaskLEDStk" was declared but never referenced
+main.c(8): warning:  #177-D: variable "App_TaskKbdStk" was declared but never referenced
+main.c(10): warning:  #177-D: variable "InfoSem" was declared but never referenced
+main.c(11): warning:  #177-D: variable "Disp_Box" was declared but never referenced
+main.c(38): warning:  #177-D: function "App_TaskStart" was declared but never referenced
+Target not created
+Build target 'Flash'
+compiling main.c...
+main.c(18): warning:  #550-D: variable "os_err" was set but never used
+main.c(6): warning:  #177-D: variable "App_TaskUartStk" was declared but never referenced
+main.c(7): warning:  #177-D: variable "App_TaskLEDStk" was declared but never referenced
+main.c(8): warning:  #177-D: variable "App_TaskKbdStk" was declared but never referenced
+main.c(10): warning:  #177-D: variable "InfoSem" was declared but never referenced
+main.c(11): warning:  #177-D: variable "Disp_Box" was declared but never referenced
+linking...
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TCBInitHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskCreateHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskDelHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskIdleHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskStatHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskSwHook (referred from os_cpu_c.o).
+Target not created
+Build target 'Flash'
+compiling main.c...
+main.c(18): warning:  #550-D: variable "os_err" was set but never used
+linking...
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TCBInitHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskCreateHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskDelHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskIdleHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskStatHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskSwHook (referred from os_cpu_c.o).
+Target not created
+Build target 'Flash'
+compiling main.c...
+main.c(28): error:  #20: identifier "os_err" is undefined
+Target not created
+Build target 'Flash'
+compiling main.c...
+main.c(18): warning:  #550-D: variable "os_err" was set but never used
+linking...
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TCBInitHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskCreateHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskDelHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskIdleHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskStatHook (referred from os_cpu_c.o).
+.\output\STM3210B-EVAL-OS-Probe.axf: Error: L6218E: Undefined symbol App_TaskSwHook (referred from os_cpu_c.o).
+Target not created
+Build target 'Flash'
+compiling main.c...
+main.c(18): warning:  #550-D: variable "os_err" was set but never used
+linking...
+Program Size: Code=13806 RO-data=310 RW-data=68 ZI-data=5380  
+".\output\STM3210B-EVAL-OS-Probe.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Flash'
+compiling main.c...
+main.c(18): warning:  #550-D: variable "os_err" was set but never used
+main.c(41): warning:  #177-D: variable "os_err" was declared but never referenced
+main.c(7): warning:  #177-D: variable "App_TaskLEDStk" was declared but never referenced
+compiling bsp.c...
+..\BSP\bsp.c(555): error:  #20: identifier "DEF_BIT_8" is undefined
+..\BSP\bsp.c(555): error:  #20: identifier "DEF_BIT_9" is undefined
+..\BSP\bsp.c(587): error:  #20: identifier "DEF_BIT_8" is undefined
+..\BSP\bsp.c(587): error:  #20: identifier "DEF_BIT_9" is undefined
+..\BSP\bsp.c(629): error:  #20: identifier "DEF_BIT_8" is undefined
+..\BSP\bsp.c(629): error:  #20: identifier "DEF_BIT_9" is undefined
+..\BSP\bsp.c(680): error:  #20: identifier "DEF_BIT_8" is undefined
+..\BSP\bsp.c(688): error:  #20: identifier "DEF_BIT_9" is undefined
+Target not created
+Build target 'Flash'
+compiling bsp.c...
+linking...
+Program Size: Code=13858 RO-data=310 RW-data=68 ZI-data=5380  
+".\output\STM3210B-EVAL-OS-Probe.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Flash'
+compiling bsp.c...
+linking...
+Program Size: Code=13858 RO-data=310 RW-data=68 ZI-data=5380  
+".\output\STM3210B-EVAL-OS-Probe.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Documents and Settings\\Administrator\\桌面\\新建文件夹 (2)\\Software\\EvalBoards\\ST\\STM3210B-LK1\\RVMDK\\APP\\output\\STM3210B-EVAL-OS-Probe.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
